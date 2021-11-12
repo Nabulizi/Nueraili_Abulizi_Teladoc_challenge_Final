@@ -21,6 +21,7 @@ public class UserManagement_Steps {
 		System.setProperty("webdriver.chrome.driver", "//Users/nurali/Project/Nueraili_Abulizi_Teladoc_challenge-master/Driver//chromedriver");
 	    driver=new ChromeDriver();
 	    driver.get(url);
+	    driver.manage().window().maximize();
 	    Thread.sleep(1500);
 	}
 	 
@@ -78,6 +79,7 @@ public class UserManagement_Steps {
 	public void a_user_is_added(String fn) throws Exception {
 		UserPage.verifyUser(driver,fn);
 		Thread.sleep(5000);
+		driver.quit();
 	}
 	
 	@When("user click delete mark for username {string} from webtable")
@@ -99,8 +101,9 @@ public class UserManagement_Steps {
 	}
 
 	@Then("user {string} should be deleted from webtable")
-	public void user_should_be_deteted_from_webtable(String string) {
-
+	public void user_should_be_deteted_from_webtable(String userName) {
+		UserPage.verifyUserIsDeleted(driver, userName);
+		driver.quit();
 	}
 
 }
